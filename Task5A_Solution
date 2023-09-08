@@ -1,1 +1,15 @@
+select	
 
+  p.PRODUCT_NAME
+  ,s.PRICE * s.QUANTITY as Revenue
+  ,d.DELIVERY_METHOD
+  ,d.DELIVERY_COST as OriginalDeliveryCost
+  ,case		when c.CITY != 'Budapest' then d.DELIVERY_COST * 1.2 else 0	end as StressedDeliveryCost   
+
+from sales as s     
+
+  left join products as p on p.PRODUCT_ID = s.PRODUCT_ID    
+  left join delivery as d on d.DELIVERY_METHOD_ID = s.DELIVERY_METHOD_ID    
+  left join customers as c on c.CUSTOMER_ID = s.CUSTOMER_ID  
+
+where d.DELIVERY_METHOD = 'Post Office'
