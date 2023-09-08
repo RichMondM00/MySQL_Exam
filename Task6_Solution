@@ -1,1 +1,12 @@
+select	
 
+  left(s.PRICE * s.QUANTITY,1) as FirstDigit
+  ,count(1) as Distribution    
+
+from sales as s   
+
+group by		
+  FirstDigit	
+
+order by 		
+  Distribution desc
