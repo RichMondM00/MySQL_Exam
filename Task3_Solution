@@ -4,7 +4,6 @@ select
   round((sum(s.PRICE * s.QUANTITY))/1000000,2) as Revenue,    
   count(1) as 'Number of Sales'    
 from sales as s	
-
   left join customers as c on c.CUSTOMER_ID = s.CUSTOMER_ID    
 where 1=1		
     and month(s.sales_date) = 1        
