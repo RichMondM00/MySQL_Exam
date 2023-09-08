@@ -1,1 +1,11 @@
-
+select	
+  c.FIRST_NAME as 'First Name',    
+  c.MIDDLE_NAME as 'Middle Name',   
+  c.AGE as Age    
+from customers as c    
+  where 1=1		
+    and c.AGE < 50       
+    and c.CITY != 'Budapest'        
+    and c.LAST_NAME not like 'O%'        	
+order by		
+  c.AGE asc
