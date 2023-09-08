@@ -1,1 +1,25 @@
+select	
 
+  p.PRODUCT_NAME as 'Product Name'
+  ,d.DELIVERY_METHOD as Delivery	
+  ,sum(s.PRICE * s.QUANTITY) as Revenue    
+  ,round(avg(s.PRICE * s.QUANTITY),2) as AvgRevenue    
+  ,count(1) as NumberOfSales	
+
+from sales as s    
+
+  left join products as p on p.PRODUCT_ID = s.PRODUCT_ID    
+  left join delivery as d on d.DELIVERY_METHOD_ID = s.DELIVERY_METHOD_ID     
+
+where 1=1		
+  and month(s.sales_date) = 12     
+  and p.WAREHOUSE_QUANTITY > 5        
+  and d.DELIVERY_METHOD is not null     
+
+group by 		
+    p.PRODUCT_NAME,  d.DELIVERY_METHOD        	
+
+order by		
+  Revenue desc        	
+
+limit 20
