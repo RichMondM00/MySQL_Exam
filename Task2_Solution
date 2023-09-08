@@ -1,1 +1,7 @@
-
+select	
+  s.SALE_ID as 'Sales ID',    
+  s.PRICE * s.QUANTITY as Revenue,    
+  month(s.sales_date) as Month    
+from sales as s        
+order by 		
+  s.SALE_ID desc
